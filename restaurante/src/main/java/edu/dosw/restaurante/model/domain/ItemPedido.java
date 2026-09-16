@@ -15,4 +15,11 @@ public class ItemPedido {
     private String nombrePlato;
     private Double precioCongelado;
     private Integer cantidad;
+
+    public Double subtotal() {
+        if (precioCongelado == null || cantidad == null) {
+            return 0.0;
+        }
+        return precioCongelado * cantidad;
+    }
 }

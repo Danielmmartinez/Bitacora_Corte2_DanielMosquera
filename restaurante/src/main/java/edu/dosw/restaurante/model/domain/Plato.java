@@ -15,4 +15,8 @@ public class Plato {
     private Double precio;
     private String categoria;
     private Boolean disponible;
+
+    public boolean esValido() {
+        return nombre != null && !nombre.isBlank() && precio != null && precio > 0;
+    }
 }

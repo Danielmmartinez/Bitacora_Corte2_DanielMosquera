@@ -15,4 +15,18 @@ public class Mesa {
     private Integer capacidad;
     private EstadoMesa estado;
     private Boolean cuentaAbierta;
+
+    public Boolean estaDisponible() {
+        return EstadoMesa.DISPONIBLE.equals(this.estado);
+    }
+
+    public void abrirCuenta() {
+        this.estado = EstadoMesa.OCUPADA;
+        this.cuentaAbierta = true;
+    }
+
+    public void cerrarCuenta() {
+        this.estado = EstadoMesa.DISPONIBLE;
+        this.cuentaAbierta = false;
+    }
 }
