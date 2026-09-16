@@ -17,4 +17,16 @@ public class Reserva {
     private String cliente;
     private LocalDateTime fechaHora;
     private Integer comensales;
+
+    public Boolean estaVigente() {
+        return fechaHora != null && fechaHora.isAfter(LocalDateTime.now());
+    }
+
+    public void cancelar() {
+        this.fechaHora = null;
+    }
+
+    public void reprogramar(LocalDateTime nuevaFechaHora) {
+        this.fechaHora = nuevaFechaHora;
+    }
 }
