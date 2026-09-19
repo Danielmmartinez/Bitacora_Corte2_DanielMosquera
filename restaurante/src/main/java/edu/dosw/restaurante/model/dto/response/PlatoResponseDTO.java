@@ -1,4 +1,4 @@
-package edu.dosw.restaurante.domain;
+package edu.dosw.restaurante.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,14 +9,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Plato {
+public class PlatoResponseDTO {
     private Long id;
     private String nombre;
     private Double precio;
     private String categoria;
     private Boolean disponible;
-
-    public boolean esValido() {
-        return nombre != null && !nombre.isBlank() && precio != null && precio > 0;
-    }
 }

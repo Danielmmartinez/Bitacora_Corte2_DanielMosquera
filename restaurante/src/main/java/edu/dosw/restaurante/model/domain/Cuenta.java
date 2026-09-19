@@ -17,4 +17,16 @@ public class Cuenta {
     private Double total;
     private EstadoCuenta estado;
     private LocalDateTime fechaApertura;
+
+    public Double calcularTotal() {
+        return total != null ? total : 0.0;
+    }
+
+    public void registrarPago() {
+        this.estado = EstadoCuenta.EN_PAGO;
+    }
+
+    public void cerrarCuenta() {
+        this.estado = EstadoCuenta.CERRADA;
+    }
 }

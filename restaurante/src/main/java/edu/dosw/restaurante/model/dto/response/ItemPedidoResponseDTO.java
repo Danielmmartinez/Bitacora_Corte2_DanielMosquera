@@ -1,4 +1,4 @@
-package edu.dosw.restaurante.domain;
+package edu.dosw.restaurante.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,17 +9,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ItemPedido {
+public class ItemPedidoResponseDTO {
     private Long id;
     private Long idPlato;
     private String nombrePlato;
     private Double precioCongelado;
     private Integer cantidad;
-
-    public Double subtotal() {
-        if (precioCongelado == null || cantidad == null) {
-            return 0.0;
-        }
-        return precioCongelado * cantidad;
-    }
+    private Double subtotal;
 }
