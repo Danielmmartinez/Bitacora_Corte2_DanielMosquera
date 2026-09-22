@@ -1,4 +1,4 @@
-package edu.dosw.restaurante.dto.request;
+package edu.dosw.restaurante.model.dto.request;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;

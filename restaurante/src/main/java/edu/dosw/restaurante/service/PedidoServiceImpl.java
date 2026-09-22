@@ -1,9 +1,9 @@
 package edu.dosw.restaurante.service.impl;
 
-import edu.dosw.restaurante.domain.EstadoPedido;
-import edu.dosw.restaurante.domain.ItemPedido;
-import edu.dosw.restaurante.domain.Pedido;
-import edu.dosw.restaurante.domain.Plato;
+import edu.dosw.restaurante.model.domain.EstadoPedido;
+import edu.dosw.restaurante.model.domain.ItemPedido;
+import edu.dosw.restaurante.model.domain.Pedido;
+import edu.dosw.restaurante.model.domain.Plato;
 import edu.dosw.restaurante.exception.EstadoInvalidoException;
 import edu.dosw.restaurante.exception.RecursoNoEncontradoException;
 import edu.dosw.restaurante.service.IMesaService;

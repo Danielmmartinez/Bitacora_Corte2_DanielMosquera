@@ -1,8 +1,8 @@
 package edu.dosw.restaurante.mapper;
 
-import edu.dosw.restaurante.domain.Plato;
-import edu.dosw.restaurante.dto.request.PlatoRequestDTO;
-import edu.dosw.restaurante.dto.response.PlatoResponseDTO;
+import edu.dosw.restaurante.model.domain.Plato;
+import edu.dosw.restaurante.model.dto.request.PlatoRequestDTO;
+import edu.dosw.restaurante.model.dto.response.PlatoResponseDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

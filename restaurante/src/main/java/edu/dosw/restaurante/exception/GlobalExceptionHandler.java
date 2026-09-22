@@ -1,6 +1,6 @@
 package edu.dosw.restaurante.exception;
 
-import edu.dosw.restaurante.dto.response.ErrorResponseDTO;
+import edu.dosw.restaurante.model.dto.response.ErrorResponseDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,11 +1,11 @@
 package edu.dosw.restaurante.mapper;
 
-import edu.dosw.restaurante.domain.ItemPedido;
-import edu.dosw.restaurante.domain.Pedido;
-import edu.dosw.restaurante.dto.request.ItemPedidoRequestDTO;
-import edu.dosw.restaurante.dto.request.PedidoRequestDTO;
-import edu.dosw.restaurante.dto.response.ItemPedidoResponseDTO;
-import edu.dosw.restaurante.dto.response.PedidoResponseDTO;
+import edu.dosw.restaurante.model.domain.ItemPedido;
+import edu.dosw.restaurante.model.domain.Pedido;
+import edu.dosw.restaurante.model.dto.request.ItemPedidoRequestDTO;
+import edu.dosw.restaurante.model.dto.request.PedidoRequestDTO;
+import edu.dosw.restaurante.model.dto.response.ItemPedidoResponseDTO;
+import edu.dosw.restaurante.model.dto.response.PedidoResponseDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -15,7 +15,7 @@ import java.util.List;
 public interface PedidoMapper {
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "estado", expression = "java(edu.dosw.restaurante.domain.EstadoPedido.RECIBIDO)")
+    @Mapping(target = "estado", expression = "java(edu.dosw.restaurante.model.domain.EstadoPedido.RECIBIDO)")
     @Mapping(target = "timestamp", expression = "java(java.time.LocalDateTime.now())")
     Pedido toDomain(PedidoRequestDTO dto);
 

@@ -1,4 +1,4 @@
-package edu.dosw.restaurante.domain;
+package edu.dosw.restaurante.model.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

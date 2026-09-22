@@ -1,9 +1,9 @@
 package edu.dosw.restaurante.controller;
 
-import edu.dosw.restaurante.domain.EstadoPedido;
-import edu.dosw.restaurante.domain.Pedido;
-import edu.dosw.restaurante.dto.request.PedidoRequestDTO;
-import edu.dosw.restaurante.dto.response.PedidoResponseDTO;
+import edu.dosw.restaurante.model.domain.EstadoPedido;
+import edu.dosw.restaurante.model.domain.Pedido;
+import edu.dosw.restaurante.model.dto.request.PedidoRequestDTO;
+import edu.dosw.restaurante.model.dto.response.PedidoResponseDTO;
 import edu.dosw.restaurante.mapper.PedidoMapper;
 import edu.dosw.restaurante.service.IPedidoService;
 import jakarta.validation.Valid;
