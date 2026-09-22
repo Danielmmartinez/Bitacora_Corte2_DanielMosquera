@@ -1,4 +1,4 @@
-package edu.dosw.restaurante.dto.request;
+package edu.dosw.restaurante.model.dto.request;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;

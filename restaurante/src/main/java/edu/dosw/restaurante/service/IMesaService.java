@@ -1,7 +1,7 @@
 package edu.dosw.restaurante.service;
 
-import edu.dosw.restaurante.domain.EstadoMesa;
-import edu.dosw.restaurante.domain.Mesa;
+import edu.dosw.restaurante.model.domain.EstadoMesa;
+import edu.dosw.restaurante.model.domain.Mesa;
 
 import java.util.List;
 

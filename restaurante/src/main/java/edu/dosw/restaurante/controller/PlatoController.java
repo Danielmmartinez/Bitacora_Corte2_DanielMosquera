@@ -1,8 +1,8 @@
 package edu.dosw.restaurante.controller;
 
-import edu.dosw.restaurante.domain.Plato;
-import edu.dosw.restaurante.dto.request.PlatoRequestDTO;
-import edu.dosw.restaurante.dto.response.PlatoResponseDTO;
+import edu.dosw.restaurante.model.domain.Plato;
+import edu.dosw.restaurante.model.dto.request.PlatoRequestDTO;
+import edu.dosw.restaurante.model.dto.response.PlatoResponseDTO;
 import edu.dosw.restaurante.mapper.PlatoMapper;
 import edu.dosw.restaurante.service.IPlatoService;
 import jakarta.validation.Valid;

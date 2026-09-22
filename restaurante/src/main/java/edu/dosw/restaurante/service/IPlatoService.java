@@ -1,6 +1,6 @@
 package edu.dosw.restaurante.service;
 
-import edu.dosw.restaurante.domain.Plato;
+import edu.dosw.restaurante.model.domain.Plato;
 
 import java.util.List;
 

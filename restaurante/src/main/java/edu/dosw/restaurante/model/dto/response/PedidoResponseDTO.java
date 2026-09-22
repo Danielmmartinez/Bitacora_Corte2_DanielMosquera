@@ -1,4 +1,4 @@
-package edu.dosw.restaurante.dto.response;
+package edu.dosw.restaurante.model.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,9 +1,8 @@
 package edu.dosw.restaurante.service;
 
-import edu.dosw.restaurante.domain.Plato;
+import edu.dosw.restaurante.model.domain.Plato;
 import edu.dosw.restaurante.exception.ConflictoException;
 import edu.dosw.restaurante.exception.RecursoNoEncontradoException;
-import edu.dosw.restaurante.service.IPlatoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
