@@ -17,6 +17,7 @@ public interface PedidoMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "estado", expression = "java(edu.dosw.restaurante.model.domain.EstadoPedido.RECIBIDO)")
     @Mapping(target = "timestamp", expression = "java(java.time.LocalDateTime.now())")
+    @Mapping(target = "idCuenta", ignore = true) // la asigna el Service según la cuenta abierta de la mesa
     Pedido toDomain(PedidoRequestDTO dto);
 
     @Mapping(target = "id", ignore = true)
@@ -24,6 +25,7 @@ public interface PedidoMapper {
     @Mapping(target = "precioCongelado", ignore = true)
     ItemPedido itemToDomain(ItemPedidoRequestDTO dto);
 
+    @Mapping(target = "total", expression = "java(domain.calcularTotal())")
     PedidoResponseDTO toResponse(Pedido domain);
 
     @Mapping(target = "subtotal", expression = "java(domain.subtotal())")

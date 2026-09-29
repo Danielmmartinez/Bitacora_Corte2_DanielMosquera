@@ -6,7 +6,6 @@ import edu.dosw.restaurante.model.dto.request.PlatoRequestDTO;
 import edu.dosw.restaurante.model.dto.response.PlatoResponseDTO;
 import edu.dosw.restaurante.service.IPlatoService;
 import org.junit.jupiter.api.Test;
-
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -63,6 +62,31 @@ class PlatoControllerTest {
         ResponseEntity<PlatoResponseDTO> response = platoController.crear(requestDTO);
 
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
+    }
+
+    @Test
+    void actualizar_DevuelveOK() {
+        PlatoRequestDTO requestDTO = new PlatoRequestDTO("Sopa Miso", 9000.0, "Sopas", true);
+        Plato dominio = new Plato();
+        when(platoMapper.toDomain(requestDTO)).thenReturn(dominio);
+        when(platoService.actualizar(1L, dominio)).thenReturn(dominio);
+        when(platoMapper.toResponse(dominio)).thenReturn(new PlatoResponseDTO());
+
+        ResponseEntity<PlatoResponseDTO> response = platoController.actualizar(1L, requestDTO);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        verify(platoService).actualizar(1L, dominio);
+    }
+
+    @Test
+    void cambiarDisponibilidad_DevuelveOK() {
+        when(platoService.cambiarDisponibilidad(1L, false)).thenReturn(new Plato());
+        when(platoMapper.toResponse(any())).thenReturn(new PlatoResponseDTO());
+
+        ResponseEntity<PlatoResponseDTO> response = platoController.cambiarDisponibilidad(1L, false);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        verify(platoService).cambiarDisponibilidad(1L, false);
     }
 
     @Test

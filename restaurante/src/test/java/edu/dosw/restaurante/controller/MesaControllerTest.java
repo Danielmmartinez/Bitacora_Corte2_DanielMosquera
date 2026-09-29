@@ -33,14 +33,39 @@ class MesaControllerTest {
     private MesaController mesaController;
 
     @Test
-    void obtenerTodas_DevuelveOK() {
+    void obtenerTodas_SinFiltro_DevuelveOK() {
         when(mesaService.obtenerTodas()).thenReturn(List.of(new Mesa()));
         when(mesaMapper.toResponseList(any())).thenReturn(List.of(new MesaResponseDTO()));
 
-        ResponseEntity<List<MesaResponseDTO>> response = mesaController.obtenerTodas();
+        ResponseEntity<List<MesaResponseDTO>> response = mesaController.obtenerTodas(null);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertFalse(response.getBody().isEmpty());
+        verify(mesaService, never()).obtenerPorEstado(any());
+    }
+
+    @Test
+    void obtenerTodas_ConFiltro_UsaObtenerPorEstado() {
+        when(mesaService.obtenerPorEstado(EstadoMesa.DISPONIBLE)).thenReturn(List.of(new Mesa()));
+        when(mesaMapper.toResponseList(any())).thenReturn(List.of(new MesaResponseDTO()));
+
+        ResponseEntity<List<MesaResponseDTO>> response = mesaController.obtenerTodas(EstadoMesa.DISPONIBLE);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        verify(mesaService, never()).obtenerTodas();
+    }
+
+    @Test
+    void actualizar_DevuelveOK() {
+        MesaRequestDTO requestDTO = new MesaRequestDTO(2, 6);
+        Mesa dominio = new Mesa();
+        when(mesaMapper.toDomain(requestDTO)).thenReturn(dominio);
+        when(mesaService.actualizar(1L, dominio)).thenReturn(dominio);
+        when(mesaMapper.toResponse(dominio)).thenReturn(new MesaResponseDTO());
+
+        ResponseEntity<MesaResponseDTO> response = mesaController.actualizar(1L, requestDTO);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
     @Test

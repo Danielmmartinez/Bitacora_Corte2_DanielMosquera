@@ -68,6 +68,7 @@ class PedidoMapperTest {
         assertEquals("EN_PREPARACION", response.getEstado());
         assertEquals(1, response.getItems().size());
         assertEquals(10000.0, response.getItems().get(0).getSubtotal());
+        assertEquals(10000.0, response.getTotal());
     }
 
     @Test

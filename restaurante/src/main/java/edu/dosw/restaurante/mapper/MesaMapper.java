@@ -14,6 +14,7 @@ public interface MesaMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "estado", expression = "java(edu.dosw.restaurante.model.domain.EstadoMesa.DISPONIBLE)")
     @Mapping(target = "cuentaAbierta", constant = "false")
+    @Mapping(target = "idCuentaAbierta", ignore = true)
     Mesa toDomain(MesaRequestDTO dto);
 
     MesaResponseDTO toResponse(Mesa domain);

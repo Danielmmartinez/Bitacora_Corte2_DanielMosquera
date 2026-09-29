@@ -16,6 +16,7 @@ import java.util.List;
 public class Pedido {
     private Long id;
     private Long idMesa;
+    private Long idCuenta;
     private List<ItemPedido> items;
     private EstadoPedido estado;
     private LocalDateTime timestamp;
@@ -33,7 +34,18 @@ public class Pedido {
         }
     }
 
+    public boolean puedeCambiarA(EstadoPedido nuevoEstado) {
+        return estado != null && estado.puedeTransicionarA(nuevoEstado);
+    }
+
     public void cambiarEstado(EstadoPedido nuevoEstado) {
         this.estado = nuevoEstado;
+    }
+
+    public Double calcularTotal() {
+        if (items == null) {
+            return 0.0;
+        }
+        return items.stream().mapToDouble(ItemPedido::subtotal).sum();
     }
 }
