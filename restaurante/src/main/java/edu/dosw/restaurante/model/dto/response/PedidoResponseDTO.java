@@ -15,7 +15,9 @@ import java.util.List;
 public class PedidoResponseDTO {
     private Long id;
     private Long idMesa;
+    private Long idCuenta;
     private List<ItemPedidoResponseDTO> items;
     private String estado;
     private LocalDateTime timestamp;
+    private Double total;
 }

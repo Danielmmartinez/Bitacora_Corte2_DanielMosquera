@@ -1,0 +1,15 @@
+# MongoDB local para el historial de pedidos.
+#   Encender:  docker compose up -d
+#   Apagar:    docker compose down        (los datos se conservan en el volumen)
+#   Borrar todo: docker compose down -v
+services:
+  mongodb:
+    image: mongo:7
+    container_name: restaurante-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

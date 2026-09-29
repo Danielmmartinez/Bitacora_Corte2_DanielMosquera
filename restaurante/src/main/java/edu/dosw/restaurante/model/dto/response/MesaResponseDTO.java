@@ -15,4 +15,5 @@ public class MesaResponseDTO {
     private Integer capacidad;
     private String estado;
     private Boolean cuentaAbierta;
+    private Long idCuentaAbierta;
 }

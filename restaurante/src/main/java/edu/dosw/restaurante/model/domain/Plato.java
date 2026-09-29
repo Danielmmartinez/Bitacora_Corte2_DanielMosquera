@@ -16,7 +16,15 @@ public class Plato {
     private String categoria;
     private Boolean disponible;
 
-    public boolean esValido() {
-        return nombre != null && !nombre.isBlank() && precio != null && precio > 0;
+    public boolean estaDisponible() {
+        return Boolean.TRUE.equals(disponible);
+    }
+
+    public void activar() {
+        this.disponible = true;
+    }
+
+    public void desactivar() {
+        this.disponible = false;
     }
 }
