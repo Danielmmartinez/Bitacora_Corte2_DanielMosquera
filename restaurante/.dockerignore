@@ -1,0 +1,10 @@
+.git
+.gitignore
+.mvn
+target/
+*.md
+*.p12
+.env
+.idea
+*.iml
+data/
