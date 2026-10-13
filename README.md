@@ -201,39 +201,31 @@ La API protege la integridad de los datos aplicando estándares de la industria:
 ## Diagramas y Evidencias
 
 ### Diagrama de Clases
-![](docs/DiagramaClases.drawio.png)
+![](restaurante/docs/DiagramaClases.drawio.png)
 
 ### Diagrama de Componentes
-![](docs/DiagramaComponentes.drawio.png)
+![](restaurante/docs/DiagramaComponentes.drawio.png)
 
 ### Diagrama de Secuencia
-![](docs/DiagramaSecuencia.drawio.png)
+![](restaurante/docs/DiagramaSecuencia.drawio.png)
 
 ### Diagrama de Despliegue (draw.io)
 ![](docs/DiagramaDespliegue.png)
 
 ### Pipeline GitHub Actions (100% Verde)
-![](docs/github-actions-verde.png)
+![](restaurante/docs/github-actions-verde.png)
 
 ### Docker Hub y Contenedores
 * **Docker Hub con Tags Generados:**  
-  `![](docs/dockerhub.png)`
-* **Contenedores en Ejecución (`docker compose ps`):**  
-  `![](docs/docker-ps.png)`
+  ![](restaurante/docs/Docker.png)
 
-### Pruebas de Seguridad
-* **401 Unauthorized (Sin Token):**  
-  `![](docs/security-401.png)`
-* **403 Forbidden (Rol Insuficiente):**  
-  `![](docs/security-403.png)`
 
 ### Cobertura JaCoCo & SonarQube
 * **JaCoCo:**  
-  `![](docs/JaCoCo.png)`
+  ![](restaurante/docs/JaCoCo.png)
 * **SonarQube:**  
-  `![](docs/SonarCube.png)`
+  ![](restaurante/docs/SonarCube.png)
 
 ### Swagger UI
-![](docs/Swagger1.png)
-![](docs/Swagger2.png)
-```
+![](restaurante/docs/Swagger1.png)
+![](restaurante/docs/Swagger2.png)
