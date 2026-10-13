@@ -1,0 +1,85 @@
+name: CD - Deploy Production
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+env:
+  IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/restaurante-api
+
+jobs:
+  build-prod:
+    name: 🐳 Construir Imagen Release
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.meta.outputs.version }}
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Login a Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Metadatos para Release
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.IMAGE_NAME }}
+          tags: |
+            type=semver,pattern={{version}}
+            type=raw,value=latest
+
+      - name: Construir y subir imagen a Docker Hub
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+
+  deploy-prod:
+    name: 🚀 Desplegar en Azure PROD
+    needs: build-prod
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Login a Azure
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Desplegar contenedor en Web App PROD
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ secrets.AZURE_WEBAPP_NAME_PROD }}
+          images: ${{ env.IMAGE_NAME }}:${{ needs.build-prod.outputs.version }}
+
+      - name: Configurar Variables de Entorno en Azure PROD
+        uses: azure/appservice-settings@v1
+        with:
+          app-name: ${{ secrets.AZURE_WEBAPP_NAME_PROD }}
+          app-settings-json: |
+            [
+              {"name": "SPRING_PROFILES_ACTIVE", "value": "docker"},
+              {"name": "DB_HOST", "value": "${{ secrets.DB_HOST }}"},
+              {"name": "DB_PORT", "value": "${{ secrets.DB_PORT }}"},
+              {"name": "DB_NAME", "value": "${{ secrets.DB_NAME }}"},
+              {"name": "DB_USER", "value": "${{ secrets.DB_USER }}"},
+              {"name": "DB_PASSWORD", "value": "${{ secrets.DB_PASSWORD }}"},
+              {"name": "MONGO_URI", "value": "${{ secrets.MONGO_URI }}"},
+              {"name": "JWT_SECRET", "value": "${{ secrets.JWT_SECRET_PROD }}"},
+              {"name": "USUARIOS_DEMO", "value": "false"}
+            ]
+
+  notify:
+    name: 📢 Notificación
+    needs: deploy-prod
+    runs-on: ubuntu-latest
+    steps:
+      - name: Resumen
+        run: |
+          echo "✅ Despliegue en PRODUCCIÓN completado con éxito."
+          echo "Versión: ${{ github.ref_name }}"

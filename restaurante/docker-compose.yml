@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  # ── Base de Datos Relacional: PostgreSQL ─────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    container_name: restaurante-postgres
+    environment:
+      POSTGRES_DB: ${DB_NAME:-restaurante}
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d restaurante"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - restaurante-net
+
+  # ── Base de Datos No Relacional: MongoDB ──────────────────────────────
+  mongodb:
+    image: mongo:7
+    container_name: restaurante-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - restaurante-net
+
+  # ── Backend: Spring Boot API ──────────────────────────────────────────
+  api:
+    build: .
+    container_name: restaurante-api
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME:-restaurante}
+      DB_USER: ${DB_USER:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD:-postgres}
+      MONGO_HOST: mongodb
+      MONGO_PORT: 27017
+      MONGO_DB: restaurante
+      JWT_SECRET: ${JWT_SECRET:-PUBJDxNFLO9LWnNdSh3qWooCYkTk4XPxAuNCDb+O+wbzbA3sEGewm0IIgv6jijIQ}
+      USUARIOS_DEMO: "true"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mongodb:
+        condition: service_started
+    networks:
+      - restaurante-net
+
+volumes:
+  postgres-data:
+  mongo-data:
+
+networks:
+  restaurante-net:
+    driver: bridge

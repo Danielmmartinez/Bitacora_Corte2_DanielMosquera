@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: restaurante
+
+  # ── Base de Datos Relacional: PostgreSQL (Neon / Docker) ──────────
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:postgres}:${DB_PORT:5432}/${DB_NAME:restaurante}?sslmode=require
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: false
+
+  # ── Base de Datos No Relacional: MongoDB (Atlas / Docker) ─────────
+  data:
+    mongodb:
+      uri: ${MONGO_URI:mongodb://mongodb:27017/restaurante}
+
+# ── Seguridad (JWT) ────────────────────────────────────────────────
+jwt:
+  secret: ${JWT_SECRET:PUBJDxNFLO9LWnNdSh3qWooCYkTk4XPxAuNCDb+O+wbzbA3sEGewm0IIgv6jijIQ}
+  expiration: ${JWT_EXPIRATION:86400000}
+
+# ── Configuración del Restaurante ──────────────────────────────────
+restaurante:
+  seguridad:
+    usuarios-demo: ${USUARIOS_DEMO:true}
+  cors:
+    origenes: ${CORS_ORIGENES:http://localhost:5173,http://localhost:3000}
+  reservas:
+    hora-apertura: 12:00
+    hora-ultima-reserva: 21:00
+    duracion-minutos: 120
+  parqueadero:
+    capacidad: 20
+    tarifa-hora-carro: 5000
+    tarifa-hora-moto: 2000
+
+# ── Documentación Swagger ──────────────────────────────────────────
+springdoc:
+  override-with-generic-response: false
