@@ -36,8 +36,8 @@ restaurante:
   cors:
     origenes: ${CORS_ORIGENES:http://localhost:5173,http://localhost:3000}
   reservas:
-    hora-apertura: 12:00
-    hora-ultima-reserva: 21:00
+    hora-apertura: "12:00"
+    hora-ultima-reserva: "21:00"
     duracion-minutos: 120
   parqueadero:
     capacidad: 20
